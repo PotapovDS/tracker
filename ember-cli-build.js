@@ -1,9 +1,17 @@
+/* eslint-disable prefer-template */
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
-  let app = new EmberApp(defaults, {
+  const bootstrapPath = 'bower_components/bootstrap-sass/assets/';
+
+  const app = new EmberApp(defaults, {
+    sassOptions: {
+      includePaths: [
+        bootstrapPath + 'stylesheets',
+      ],
+    },
     // Add options here
   });
 
@@ -20,5 +28,6 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
+  app.import(bootstrapPath + 'javascripts/bootstrap.js');
   return app.toTree();
 };
